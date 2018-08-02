@@ -39,6 +39,10 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     cd - && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y python-pip
+RUN pip install kubernetes
+RUN curl -Lo /var/lib/rundeck/libext/kubernetes-plugin-1.0.7.zip https://github.com/rundeck-plugins/kubernetes/releases/download/1.0.7/kubernetes-plugin-1.0.7.zip
 
 ADD content/ /
 RUN chmod u+x /opt/run && \
